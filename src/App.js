@@ -6,6 +6,7 @@ import ListEmployeeComponent from './components/ListEmployeeComponent';
 import HeaderComponent from './components/HeaderComponent';
 import FooterComponent from './components/FooterComponent';
 import CreateEmployeeeComponent from './components/CreateEmployeeeComponent';
+import ViewEmployeeComponent from './components/ViewEmployeeComponent';
 // import UpdateEmployeeeComponent from './components/UpdateEmployeeComponent'
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
                 <Route path="/" exact component={ListEmployeeComponent}></Route>
                 <Route path="/employees" component={ListEmployeeComponent}></Route>
                 <Route path="/add-employee/:id" component={CreateEmployeeeComponent}></Route>
+                <Route path="/view-employee/:id" component={ViewEmployeeComponent}></Route>
                 {/*<Route path="/update-employee/:id" component={UpdateEmployeeeComponent}></Route>*/}
               </Switch>
             </div>
