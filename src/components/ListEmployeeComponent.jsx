@@ -10,8 +10,16 @@ class ListEmployeeComponent extends Component {
         }
         this.addEmployee = this.addEmployee.bind(this);
         this.editEmployee = this.editEmployee.bind(this);
+        this.deleteEmployee = this.deleteEmployee.bind(this);
     }
-    
+
+    deleteEmployee(id) {
+        EmployeeService.deleteEmployee(id)
+            .then(res => {
+                this.setState({employees: this.state.employees.filter(employee => employee.id !== id)});
+            });
+    }
+
     componentDidMount() {
         EmployeeService.getEmployees().then((res) => {
             this.setState({ employees: res.data });
@@ -31,9 +39,7 @@ class ListEmployeeComponent extends Component {
             <div>
                 <h2 className="text-center">Employees List</h2>
                 <div className="row">
-                    <div className="row">
-                        <button className="btn btn-primary" onClick={this.addEmployee}>Add Employee</button>
-                    </div>
+                    <button className="btn btn-primary" onClick={this.addEmployee}>Add Employee</button>
                     <table className="table table-striped table-bordered">
                         
                         <thead>
@@ -55,6 +61,7 @@ class ListEmployeeComponent extends Component {
                                         <td>{employees.emailId}</td>
                                         <td>
                                             <button onClick={() => this.editEmployee(employees.id)} className="btn btn-info">Update</button>    
+                                            <button style={{marginLeft:"10px"}} onClick={() => this.deleteEmployee(employees.id)} className="btn btn-danger">Delete</button>    
                                         </td>
                                     </tr>
                                 )
